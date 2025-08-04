@@ -18,6 +18,7 @@ class UserSeeder extends Seeder
             'name' => 'Adzhimmar',
             'email' => 'adzhimmar@gmail.com',
             'password' => Hash::make('12345678'),
+            'is_admin' => true
         ]);
     }
 }
