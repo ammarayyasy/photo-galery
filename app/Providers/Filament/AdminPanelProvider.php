@@ -55,7 +55,7 @@ class AdminPanelProvider extends PanelProvider
                 Authenticate::class,
             ])
             ->bootUsing(function () {
-                if (! auth()->user()?->is_admin) {
+                if (auth()->check() && ! auth()->user()->is_admin) {
                     abort(403);
                 }
             });
