@@ -30,40 +30,52 @@
 
     <h2>Galeri Foto Ammar dan Zahra</h2>
 
+    {{-- <div id="gallery">
+        <a data-fancybox="gallery" href="https://picsum.photos/1280/720">
+            <img src="https://picsum.photos/1280/720" alt="Foto">
+        </a>
+        <a data-fancybox="gallery" href="https://picsum.photos/1280/720">
+            <img src="https://picsum.photos/1280/720" alt="Foto">
+        </a>
+        <a data-fancybox="gallery" href="https://picsum.photos/1280/720">
+            <img src="https://picsum.photos/1280/720" alt="Foto">
+        </a>
+        <a data-fancybox="gallery" href="https://picsum.photos/720/1280">
+            <img src="https://picsum.photos/720/1280" alt="Foto">
+        </a>
+        <a data-fancybox="gallery" href="https://picsum.photos/1280/720">
+            <img src="https://picsum.photos/1280/720" alt="Foto">
+        </a>
+        <a data-fancybox="gallery" href="https://picsum.photos/720/1280">
+            <img src="https://picsum.photos/720/1280" alt="Foto">
+        </a>
+        <a data-fancybox="gallery" href="https://picsum.photos/720/1280">
+            <img src="https://picsum.photos/720/1280" alt="Foto">
+        </a>
+        <a data-fancybox="gallery" href="https://picsum.photos/1280/720">
+            <img src="https://picsum.photos/1280/720" alt="Foto">
+        </a>
+        <a data-fancybox="gallery" href="https://picsum.photos/1280/720">
+            <img src="https://picsum.photos/1280/720" alt="Foto">
+        </a>
+    </div> --}}
+
     <div id="gallery">
-        {{-- @foreach ($photos as $photo)
-            <a href="{{ asset('storage/photos/' . $photo->filename) }}">
-                <img src="{{ asset('storage/photos/' . $photo->filename) }}" alt="Foto">
-            </a>
-        @endforeach --}}
-        <a data-fancybox="gallery" href="https://picsum.photos/1280/720">
-            <img src="https://picsum.photos/1280/720" alt="Foto">
-        </a>
-        <a data-fancybox="gallery" href="https://picsum.photos/1280/720">
-            <img src="https://picsum.photos/1280/720" alt="Foto">
-        </a>
-        <a data-fancybox="gallery" href="https://picsum.photos/1280/720">
-            <img src="https://picsum.photos/1280/720" alt="Foto">
-        </a>
-        <a data-fancybox="gallery" href="https://picsum.photos/720/1280">
-            <img src="https://picsum.photos/720/1280" alt="Foto">
-        </a>
-        <a data-fancybox="gallery" href="https://picsum.photos/1280/720">
-            <img src="https://picsum.photos/1280/720" alt="Foto">
-        </a>
-        <a data-fancybox="gallery" href="https://picsum.photos/720/1280">
-            <img src="https://picsum.photos/720/1280" alt="Foto">
-        </a>
-        <a data-fancybox="gallery" href="https://picsum.photos/720/1280">
-            <img src="https://picsum.photos/720/1280" alt="Foto">
-        </a>
-        <a data-fancybox="gallery" href="https://picsum.photos/1280/720">
-            <img src="https://picsum.photos/1280/720" alt="Foto">
-        </a>
-        <a data-fancybox="gallery" href="https://picsum.photos/1280/720">
-            <img src="https://picsum.photos/1280/720" alt="Foto">
-        </a>
+        @foreach ($files as $file)
+            @if ($file->type === 'image')
+                <a data-fancybox="gallery" href="{{ asset('storage/' . $file->path) }}">
+                    <img src="{{ asset('storage/' . $file->path) }}" alt="Foto">
+                </a>
+            @elseif ($file->type === 'video')
+                <a data-fancybox="gallery" href="{{ asset('storage/' . $file->path) }}">
+                    <video muted playsinline>
+                        <source src="{{ asset('storage/' . $file->path) }}" type="video/mp4">
+                    </video>
+                </a>
+            @endif
+        @endforeach
     </div>
+
 
     <!-- Scripts -->
     <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
