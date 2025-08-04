@@ -53,12 +53,6 @@ class AdminPanelProvider extends PanelProvider
             ])
             ->authMiddleware([
                 Authenticate::class,
-            ])
-            ->bootUsing(function () {
-                if (auth()->check() && ! auth()->user()->is_admin) {
-                    abort(403);
-                }
-            });
-            
+            ]);
     }
 }
