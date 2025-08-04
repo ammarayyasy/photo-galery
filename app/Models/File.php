@@ -12,6 +12,10 @@ class File extends Model
 
     protected $guarded = ['id'];
 
+    protected $casts = [
+        'date' => 'date',
+    ];
+
     protected static function booted()
     {
         static::updating(function ($file) {

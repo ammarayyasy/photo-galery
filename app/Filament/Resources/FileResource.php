@@ -6,8 +6,10 @@ use App\Filament\Resources\FileResource\Pages;
 use App\Filament\Resources\FileResource\RelationManagers;
 use App\Models\File;
 use Filament\Forms;
+use Filament\Forms\Components\DatePicker;
 use Filament\Forms\Components\FileUpload;
 use Filament\Forms\Components\Select;
+use Filament\Forms\Components\Textarea;
 use Filament\Forms\Form;
 use Filament\Resources\Resource;
 use Filament\Tables;
@@ -45,6 +47,15 @@ class FileResource extends Resource
                 ->directory('uploads')
                 ->acceptedFileTypes(['video/mp4'])
                 ->visible(fn ($get) => $get('type') === 'video'),
+
+            Textarea::make('description')
+                ->nullable()
+                ->label('Deskripsi')
+                ->rows(3),
+
+            DatePicker::make('date')
+                ->nullable()
+                ->label('Tanggal'),
         ]);
     }
 
@@ -55,6 +66,8 @@ class FileResource extends Resource
             Tables\Columns\TextColumn::make('type'),
             Tables\Columns\ImageColumn::make('path')
                 ->label('Preview'),
+            Tables\Columns\TextColumn::make('description')->label('Deskripsi')->limit(40)->wrap(),
+            Tables\Columns\TextColumn::make('date')->label('Tanggal')->date('d M Y'),
             Tables\Columns\TextColumn::make('created_at')->dateTime()->label('Diunggah'),
         ])
         ->filters([])

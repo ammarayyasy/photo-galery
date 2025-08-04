@@ -63,11 +63,11 @@
     <div id="gallery">
         @foreach ($files as $file)
             @if ($file->type === 'image')
-                <a data-fancybox="gallery" href="{{ asset('storage/' . $file->path) }}">
+                <a data-fancybox="gallery" href="{{ asset('storage/' . $file->path) }}" data-caption="{{ $file->date?->translatedFormat('l, j F Y') }}{{ $file->description ? ' | ' . $file->description : '' }}">
                     <img src="{{ asset('storage/' . $file->path) }}" alt="Foto">
                 </a>
             @elseif ($file->type === 'video')
-                <a data-fancybox="gallery" href="{{ asset('storage/' . $file->path) }}">
+                <a data-fancybox="gallery" href="{{ asset('storage/' . $file->path) }}" data-caption="{{ $file->date?->translatedFormat('l, j F Y') }}{{ $file->description ? ' | ' . $file->description : '' }}">
                     <video muted playsinline>
                         <source src="{{ asset('storage/' . $file->path) }}" type="video/mp4">
                     </video>
